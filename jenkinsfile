@@ -1,0 +1,47 @@
+pipeline{
+    agent any
+    stages{
+        stage("one"){
+        steps{
+        echo "Hello My pipeline worked"
+        }
+        }
+        stage("two"){
+        steps{
+        input("Are sure you want to proceed?")
+        }
+        }
+        stage("three"){
+        when{
+          not{
+            branch "main"
+          }
+        }
+        steps {
+        echo "hello"
+        }
+      }
+      stage("four"){
+        parallel{
+            stage("unit-test"){
+            steps{
+                echo "Unit test stage"
+                }
+            }
+            stage("integration-test"){
+            agent{
+               docker{
+                 reuseNode: false
+                 image: node10:alpine
+               }
+            }
+            steps{
+            
+            echo "Running Integratio test"
+            }
+            
+            }
+        }
+      }
+    }
+}
