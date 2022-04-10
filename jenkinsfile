@@ -32,7 +32,7 @@ pipeline{
             agent{
                docker{
                  reuseNode: false
-                 image: node10:alpine
+                 image: 'node10:alpine'
                }
             }
             steps{
