@@ -29,13 +29,9 @@ pipeline{
                 }
             }
             stage("integration-test"){
-            agent{
-               docker{
-                 reuseNode: false
-                 image: 'node10:alpine'
-               }
-            }
-            steps{
+             steps{
+                docker.image('node10:alpine')
+                      .inside('-p 3000:3000'){}
             
             echo "Running Integratio test"
             }
