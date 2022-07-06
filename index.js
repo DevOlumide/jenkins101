@@ -1,1 +1,1 @@
-console.log("Added webhook, and github webhook is working. Just checking to see if everything works fine");
+console.log("Added webhook, and github webhook is working.");
